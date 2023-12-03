@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+   <title>Sistema de comentarios</title>
+   
+       <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <style>
+ 
+    .post {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      width: 100vw;
+      margin: 20px auto;
+      border: 1px solid #ccc;
+      font-family: Arial, sans-serif;
+    }
+
+    .post-header {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .post-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .post-info {
+      margin-left: 10px;
+    }
+
+    .post-name {
+      font-weight: bold;
+      color: #365899;
+    }
+
+    .post-time {
+      font-size: 12px;
+      color: #616770;
+    }
+
+    .post-menu {
+      margin-left: auto;
+      cursor: pointer;
+    }
+
+    .post-content {
+      padding: 10px;
+      word-wrap: break-word;
+    }
+
+    .post-image {
+      width: 100%;
+      height: auto;
+    }
+
+    .post-actions {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+    }
+
+    .post-action {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .post-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+    }
+
+    .post-comments {
+      padding: 10px;
+    }
+
+    .post-comment {
+      display: flex;
+      align-items: start;
+      margin-bottom: 10px;
+    }
+
+    .comment-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .comment-content {
+      margin-left: 10px;
+      background-color: #f2f3f5;
+      border-radius: 18px;
+      padding: 8px 12px;
+      word-wrap: break-word;
+    }
+
+    .comment-name {
+      font-weight: bold;
+      color: #365899;
+      margin-right: 5px;
+    }
+
+    .comment-time {
+      font-size: 12px;
+      color: #616770;
+    }
+
+    .comment-reply {
+      font-size: 12px;
+      color: #365899;
+      cursor: pointer;
+    }
+
+    .post-input {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .input-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .input-text {
+      margin-left: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 18px;
+      padding: 8px 12px;
+      outline: none;
+    }
+
+    .input-text::placeholder {
+      color: #90949c;
+    }
+    
+  </style>
+  
+</head>
+
+<body>
+  
+  <div class="post">
+    <div class="post-header">
+      <img src="publicador.jpeg" class="post-avatar" alt="Avatar">
+      <div class="post-info">
+        <span class="post-name">Fox Craft</span>
+        <span class="post-time">Hace 10 minutos</span>
+      </div>
+      <img src="menu.png" class="post-menu" alt="☰ Menu">
+    </div>
+    <div class="post-content">
+      <p>Minecraft es un videojuego tipo sandbox, su traducción literal sería “caja de arena” y es lo que representa la experiencia de juego. Los jugadores pueden modelar el mundo a su gusto, destruir y construir, como si estuviesen jugando en una caja de arena.</p>
+      <a href="https://codepen.io/bing/pen/abcd1234">https://www.minecraft.net/es-es</a>
+    </div>
+    <img src="image.jpeg" class="post-image" alt="Image">
+    <div class="post-actions">
+      <div class="post-action">
+        <img src="love.png" class="post-icon" alt="Like">
+        <span>Me encanta</span>
+      </div>
+      <div class="post-action">
+        <img src="comment.png" class="post-icon" alt="Comment">
+        <span>Comentar</span>
+      </div>
+      <div class="post-action">
+        <img src="share.png" class="post-icon" alt="Share">
+        <span>Compartir</span>
+      </div>
+    </div>
+    <div class="post-comments">
+      <div class="post-comment">
+        <img src="avatar1.jpeg" class="comment-avatar" alt="Avatar">
+        <div class="comment-content">
+          <span class="comment-name">Juan Pérez</span>
+          <span class="comment-time">Hace 5 minutos</span>
+          <p>
+            Me encanta el juego, hay mucha aventura, cada mundo que se crea es totalmente diferente
+          </p>
+          <span class="comment-reply">Responder</span>
+        </div>
+      </div>
+      <div class="post-comment">
+        <img src="avatar2.jpeg" class="comment-avatar" alt="Avatar">
+        <div class="comment-content">
+          <span class="comment-name">María García</span>
+          <span class="comment-time">Hace 3 minutos</span>
+          <p>
+            Un creeper vino y destruyo mi casita de Minecraft :(
+          </p>
+          <span class="comment-reply">Responder</span>
+        </div>
+      </div>
+    </div>
+    <div class="post-input">
+      <img src="avatar.jpg" class="input-avatar" alt="Avatar">
+      <input type="text" class="input-text" placeholder="Escribe un comentario...">
+    </div>
+  </div>
+  <script>
+    
+    var postMenu = document.querySelector(".post-menu");
+    var postActions = document.querySelectorAll(".post-action");
+    var inputText = document.querySelector(".input-text");
+
+    postMenu.addEventListener("click", function() {
+      
+      alert("Opciones del menú:\n- Editar publicación\n- Eliminar publicación\n- Ocultar publicación\n- Reportar publicación");
+    });
+
+    postActions.forEach(function(postAction) {
+      postAction.addEventListener("click", function() {
+        
+        var actionText = postAction.textContent;
+        
+        alert("Has hecho clic en " + actionText);
+      });
+    });
+
+    inputText.addEventListener("keydown", function(event) {
+      
+      if (event.keyCode === 13) {
+        
+        var commentText = inputText.value;
+        
+        if (commentText !== "") {
+          
+          var newComment = document.createElement("div");
+          
+          newComment.classList.add("post-comment");
+          
+          newComment.innerHTML = `
+            <img src="avatar.jpg" class="comment-avatar" alt="Avatar">
+            <div class="comment-content">
+              <span class="comment-name">Yo (Usuario)</span>
+              <span class="comment-time">Ahora mismo</span>
+              <p>${commentText}</p>
+              <span class="comment-reply">Responder</span>
+            </div>
+          `;
+          
+          var postComments = document.querySelector(".post-comments");
+          
+          postComments.appendChild(newComment);
+          
+          inputText.value = "";
+        }
+      }
+    });
+  </script>
+
+</body>
